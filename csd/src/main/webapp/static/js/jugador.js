@@ -14,11 +14,13 @@ $(document).ready(function() {
 	});
 	
 	$('#btn-borrar').on('click', function(){
-		var id = $('#id-borrar').val();;
+		var id = $('#id-borrar').val();
+		var csrf = $('#csrf').val();
 		
 		$.ajax({
 			url : "jugador/"+id,
 			type: 'DELETE',
+			headers: {'X-CSRF-TOKEN': csrf},
 		    success: function(result) {
 		    	$('tr[data-id="'+id+'"]').remove();
 				var jugador = parseInt( $('#cantidades-jugador').text() );

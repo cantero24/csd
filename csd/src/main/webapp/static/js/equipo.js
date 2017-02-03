@@ -15,10 +15,14 @@ $(document).ready(function() {
 	
 	$('#btn-borrar').on('click', function(){
 		var id = $('#id-borrar').val();;
+		var csrf = $('#csrf').val();
+
 		
 		$.ajax({
 			url : "equipos/"+id,
 			type: 'DELETE',
+			headers: {'X-CSRF-TOKEN': csrf},
+
 		    success: function(result) {
 		    	$('tr[data-id="'+id+'"]').remove();
 				var equipos = parseInt( $('#cantidades-equipos').text() );

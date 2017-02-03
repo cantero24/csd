@@ -40,7 +40,7 @@ public class JugadorController {
 	@Autowired
 	private PropertyEditor equipoPropertyEditor;
 	
-	@Secured("ADMIN")
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String listar (Model model) {
 		

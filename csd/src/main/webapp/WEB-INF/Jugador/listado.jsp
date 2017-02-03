@@ -25,27 +25,51 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-</head>
-<body>
-<h1>esto es listado de jugador</h1>
-	<h1>${titulo}</h1>
+</head> 
+<body style="background:url('http://all-cspro.ru/_ph/3/649686777.png'); ">
 
-	<table
-		class="table table-hover table-condensed table-striped table-bordered">
+	
+		<div>
+		
+		<form action="${path}/buscar" method="POST">
+		<label style="color:white; "for="buscar ">Buscar:</label>
+		<input id="buscar"  style="width: 20%" name="buscar" class="form-control"/> 
+		<input id="csrf" name="_csrf" type="hidden" value="${_csrf.token}">
+		<button type="submit" class="btn btn-primary btn-buscar">BUSCAR</button>
+		
+		</form>
+		
+		</div>
+
+		<div align="right">
+		<br>	
+		<input type="button"
+			value="FEDERACION" name="federacion" class="btn btn-primary" onclick="self.location.href = '/csd/federacion'" />
+		<input type="button"
+			value="EQUIPOS" name="equipos" class="btn btn-primary" onclick="self.location.href = '/csd/equipos'" />
+		</div>
+		
+		<br>
+		
+		<h1 style="font-weight:bold; font-family:serif; text-align:center; color: aqua;">${titulo}</h1>
+		
+		<br>
+	<table  class="table table-hover table-condensed table-striped ">
 		<thead>
-			<tr>
+			<tr style="font-weight:bold; font-size:large; font-family:serif; color: aqua; text-align: center; background-color: transparent;" >
 				<td style="width: 10%">#</td>
 				<td style="width: 30%">Nombre</td>
-				<td style="width: 20%">Edad</td>
+				<td style="width: 10%">Edad</td>
 				<td style="width: 10%">Goles</td>
-				<td style="width: 10%">Equipo</td>
+				<td style="width: 20%">Equipo</td>
+				<td style="width: 20%">Detalle</td>
 				<td style="width: 10%">Editar</td>
 				<td style="width: 10%">borrar</td>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody  >
 			<c:forEach items="${jugadores}" var="jugador">
-				<tr data-id="${jugador.id}">
+				<tr style=" font-weight:bold; font-family:serif; font-size:large; color:white; text-align: center; background-color: transparent;" data-id="${jugador.id}">
 					<td>${jugador.id}</td>
 					<td>${jugador.nombre}</td>
 					<td>${jugador.edad}</td>
@@ -53,20 +77,33 @@
 					<td>
 					${jugador.equipo.nombre}
 					</td>
-					<td><button type="submit" class="btn btn-warning btn-editar">Editar</button></td>
-					<td><button type="button" class="btn btn-danger btn-borrar-1">borrar</button></td>
+					<td><button type="submit" class="btn btn-primary btn-detalle">DETALLE</button></td>
+					<td><button type="submit" class="btn btn-warning btn-editar">EDITAR</button></td>
+					<td><button type="button" class="btn btn-danger btn-borrar-1">BORRAR</button></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="5">Jugador registrada: <span
+				<td style="color: white; text-align: center;" colspan="5">Jugador registrada: <span
 					id="cantidades-jugador">${jugadores.size()}</span></td>
 			</tr>
 			<tr>
-				<td colspan="5">
-					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#modal-jugador">Registrar Jugador</button>
+				<td style="text-align: center" colspan="5">
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#modal-jugador">REGISTRAR JUGADOR</button>
+							
+						
+							
+						
+				
+							</td>
+							<td style="text-align: right;" colspan="5">
+							<form  action="${path}/salir" method="post">
+							<input type="hidden" name="_csrf" value="${_csrf.token}">
+							<button id="btn-salir" type="submit" class="btn btn-danger">SALIR</button>
+							</form>
+							
 				</td>
 			</tr>
 		</tfoot>
@@ -131,6 +168,8 @@
 						
 						<input id="id-borrar" name="id" type="hidden" value=""/>
 						
+					<input id="csrf" name="_csrf" type="hidden" value="${_csrf.token}">
+						
 						
 					</div>
 					<div class="modal-footer">
@@ -141,5 +180,6 @@
 			</div>
 		</div>
 	</div>
+	        	
 </body>
 </html>

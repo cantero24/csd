@@ -13,10 +13,12 @@ $(document).ready(function() {
 	
 	$('#btn-borrar').on('click', function(){
 		var id = $('#id-borrar').val();;
+		var csrf = $('#csrf').val();
 		
 		$.ajax({
 			url : "federacion/"+id,
 			type: 'DELETE',
+			headers: {'X-CSRF-TOKEN': csrf},
 		    success: function(result) {
 		    	$('tr[data-id="'+id+'"]').remove();
 				var federacion = parseInt( $('#cantidades-federacion').text() );

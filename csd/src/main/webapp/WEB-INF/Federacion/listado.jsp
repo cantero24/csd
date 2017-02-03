@@ -26,54 +26,77 @@
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
 </head>
-<body>
-<h1>esto es listado de federacion</h1>
-	<h1>${titulo}</h1>
-
-			
-				<div>
-					<div class="alert alert-danger">${mensajeError}</div>
-				</div>
-			
-			
+<body style="background:url('http://all-cspro.ru/_ph/3/649686777.png'); ">
+	
+	<div>
 		
-				<div>
-					<div class="alert alert-info">${mensajeInfo}</div>
-				</div>
-
-
-
+		<form action="${path}/buscar" method="POST">
+		<label style="color:white; "for="buscar ">Buscar:</label>
+		<input id="buscar"  style="width: 20%" name="buscar" class="form-control"/> 
+		<input id="csrf" name="_csrf" type="hidden" value="${_csrf.token}">
+		<button type="submit" class="btn btn-primary btn-buscar">BUSCAR</button>
+		
+		</form>
+		
+		</div>
+	
+	
+	<div align="right">
+		<br>	
+		<input type="button"
+			value="JUGADOR" name="jugador" class="btn btn-primary" onclick="self.location.href = '/csd/jugador'" />
+		<input type="button"
+			value="EQUIPOS" name="equipos" class="btn btn-primary" onclick="self.location.href = '/csd/equipos'" />
+		</div>
+		
+<br>
+		
+		<h1 style="font-weight:bold; font-family:serif; text-align:center; color: aqua;">${titulo}</h1>
+		
 	<table
-		class="table table-hover table-condensed table-striped table-bordered">
+class="table table-hover table-condensed table-striped ">
 		<thead>
-			<tr>
+			<tr style="font-weight:bold; font-size:large; font-family:serif; color: aqua; text-align: center; background-color: transparent;">
 				<td style="width: 10%">#</td>
-				<td style="width: 30%">Nombre</td>
+				<td style="width: 40%">Nombre</td>
 				<td style="width: 20%">Pais</td>
+				<td style="width: 10%">Detalle</td>
 				<td style="width: 10%">Editar</td>
 				<td style="width: 10%">borrar</td>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${federaciones}" var="federacion">
-				<tr data-id="${federacion.id}">
+				<tr style=" font-weight:bold; font-family:serif; font-size:large; color:white; text-align: center; background-color: transparent;"data-id="${federacion.id}">
 					<td>${federacion.id}</td>
 					<td>${federacion.nombre}</td>
 					<td>${federacion.pais}</td>
-					<td><button type="submit" class="btn btn-warning btn-editar">Editar</button></td>
-					<td><button type="button" class="btn btn-danger btn-borrar-1">borrar</button></td>
+					<td><button type="submit" class="btn btn-primary btn-detalle">DETALLE</button></td>
+					<td><button type="submit" class="btn btn-warning btn-editar">EDITAR</button></td>
+					<td><button type="button" class="btn btn-danger btn-borrar-1">BORRAR</button></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="5">Federacion registrada: <span
+				<td style="color: white; text-align: center;" colspan="5">Federacion registrada: <span
 					id="cantidades-federacion">${federaciones.size()}</span></td>
 			</tr>
 			<tr>
-				<td colspan="5">
+				<td style="text-align: center"colspan="5">
 					<button type="button" class="btn btn-primary" data-toggle="modal"
 						data-target="#modal-federacion">Registrar Federacion</button>
+						
+						
+						
+						
+					</td>
+					<td style="text-align: right;" colspan="5">
+							<form  action="${path}/salir" method="post">
+							<input type="hidden" name="_csrf" value="${_csrf.token}">
+							<button id="btn-salir" type="submit" class="btn btn-danger">SALIR</button>
+							</form>
+							
 				</td>
 			</tr>
 		</tfoot>

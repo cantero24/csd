@@ -28,13 +28,13 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.userDetailsService(servicoAutentificacion);
+		//auth
+			//.userDetailsService(servicoAutentificacion);
 			//.passwordEncoder(encoder());
-//		auth.inMemoryAuthentication().withUser("admin").password("admin").roles("PIZZARIA");
+		auth.inMemoryAuthentication().withUser("admin").password("badajoz").roles("ADMIN");
 		System.out.println("configura");
 	}
-	
+	 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -46,7 +46,7 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
 				.loginPage("/login")
 				.loginProcessingUrl("/autentificar")
 				.defaultSuccessUrl("/jugador")
-				.failureUrl("/login?errorLogin=true")
+				.failureUrl("/login?semacesso=true")
 				.usernameParameter("username")
 				.passwordParameter("password")
 				
