@@ -12,8 +12,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaDialect;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -44,6 +46,7 @@ class ConfiguracionBD {
 		Properties jpaProterties = new Properties();
 		jpaProterties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 		jpaProterties.put("hibernate.hbm2ddl.auto", "update");
+		jpaProterties.put("log4j.logger.org.hibernate.SQL", "trace");
 		entityManagerFactoryBean.setJpaProperties(jpaProterties);
 		return entityManagerFactoryBean;
 	}
@@ -53,6 +56,15 @@ class ConfiguracionBD {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 		return transactionManager;
+	}
+	
+	@Bean
+	public JpaVendorAdapter jpaVendorAdapter(){
+	    HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+	    jpaVendorAdapter.setGenerateDdl(true);
+	    jpaVendorAdapter.setShowSql(true);
+
+	    return jpaVendorAdapter;
 	}
 	
 

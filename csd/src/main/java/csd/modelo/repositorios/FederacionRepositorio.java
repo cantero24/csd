@@ -14,6 +14,8 @@ public interface FederacionRepositorio  extends CrudRepository<Federacion, Long>
 	
 
 	List<Federacion> findByNombreContaining(String busqueda);
+
+	Object findByNombre(String string);
 	
 
 }
