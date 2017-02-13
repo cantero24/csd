@@ -27,8 +27,11 @@
 <title>Insert title here</title>
 </head>
 <body style="background:url('http://all-cspro.ru/_ph/3/649686777.png'); ">
-<table  class="table table-hover table-condensed table-striped ">
 
+<jsp:include page="/WEB-INF/buscar/buscarform.jsp"></jsp:include>
+
+<table  class="table table-hover table-condensed table-striped ">
+		
 <tbody  >
 
 		</div>
@@ -40,23 +43,31 @@
 		<input type="button" value="JUGADOR" name="jugador" class="btn btn-primary" onclick="self.location.href = '/csd/jugador'" />
 		</div>
 				
-				<div>
-		
-		<form action="${path}/buscar" method="POST">
-		<label style="color: white;" for="buscar ">Buscar:</label>
-		<input id="buscar"  style="width: 20%" name="buscar" class="form-control"/> 
-		<input id="csrf" name="_csrf" type="hidden" value="${_csrf.token}">
-		<button type="submit" class="btn btn-primary btn-buscar">BUSCAR</button>
-		
-		</form>
-		
-		</div>
 				<h1 style="font-weight:bold; font-family:serif; text-align:center; color: aqua;">${titulo}</h1>
 		
+		
+		
+		<table  class="table table-hover table-condensed table-striped ">
+		<h3 style="color:white; text-align: center;">JUGADORES</h3>
+					
+		<thead>
+			<tr style="font-weight:bold; font-size:large; font-family:serif; color: aqua; text-align: center; background-color: transparent;" >
+				<td style="width: 10%">Tipo</td>
+				<td style="width: 10%">#</td>
+				<td style="width: 30%">Nombre</td>
+				<td style="width: 10%">Edad</td>
+				<td style="width: 10%">Goles</td>
+				<td style="width: 20%">Equipo</td>
+				<td style="width: 20%">Detalle</td>
+				<td style="width: 10%">Editar</td>
+				<td style="width: 10%">borrar</td>
+			</tr>
+		</thead>
+		<tbody  >
 			<c:forEach items="${jugadores}" var="jugador">
-				
 				<tr style=" font-weight:bold; font-family:serif; font-size:large; color:white; text-align: center; background-color: transparent;" data-id="${jugador.id}">
 					<td>${titulo1}</td>
+					
 					<td>${jugador.id}</td>
 					<td>${jugador.nombre}</td>
 					<td>${jugador.edad}</td>
@@ -69,10 +80,30 @@
 					<td><button type="button" class="btn btn-danger btn-borrar-1">BORRAR</button></td>
 				</tr>
 			</c:forEach>
+		</tbody>
+		</table>
+		
+			<table
+		class="table table-hover table-condensed table-striped ">
+		
+		<h3 style="color:white; text-align: center;">EQUIPOS</h3>
+		<thead>
+			<tr style="font-weight:bold; font-size:large; font-family:serif; color: aqua; text-align: center; background-color: transparent;">
+				<td style="width: 10%">Tipo</td>
 				
-				
-				<c:forEach items="${equipos}" var="equipo">
-				<tr style=" font-weight:bold; font-family:serif; font-size:large; color:white; text-align: center; background-color: transparent;" data-id="${equipo.id}">
+				<td style="width: 10%">#</td>
+				<td style="width: 30%">Nombre</td>
+				<td style="width: 20%">Estadio</td>
+				<td style="width: 10%">Federacion</td>
+				<td style="width: 10%">Presupuesto</td>
+				<td style="width: 10%">Detalle</td>
+				<td style="width: 10%">Editar</td>
+				<td style="width: 10%">borrar</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${equipos}" var="equipo">
+				<tr style=" font-weight:bold; font-family:serif; font-size:large; color:white; text-align: center; background-color: transparent;"  data-id="${equipo.id}">
 					<td>${titulo2}</td>
 					<td>${equipo.id}</td>
 					<td>${equipo.nombre}</td>
@@ -86,12 +117,26 @@
 					<td><button type="button" class="btn btn-danger btn-borrar-1">BORRAR</button></td>
 				</tr>
 			</c:forEach>
+			</tbody>
+			</table>
 			
-				
+			
+				<table class="table table-hover table-condensed table-striped ">
+				<h3 style="color:white; text-align: center;">FEDERACIONES</h3>
+		<thead>
+			<tr style="font-weight:bold; font-size:large; font-family:serif; color: aqua; text-align: center; background-color: transparent;">
+				<td style="width: 10%">Tipo</td>
+				<td style="width: 10%">#</td>
+				<td style="width: 40%">Nombre</td>
+				<td style="width: 20%">Pais</td>
+				<td style="width: 10%">Detalle</td>
+				<td style="width: 10%">Editar</td>
+				<td style="width: 10%">borrar</td>
+			</tr>
+		</thead>
+		<tbody>
 			<c:forEach items="${federaciones}" var="federacion">
-			
-				
-				<tr style=" font-weight:bold; font-family:serif; font-size:large; color:white; text-align: center; background-color: transparent;" data-id="${federacion.id}">
+				<tr style=" font-weight:bold; font-family:serif; font-size:large; color:white; text-align: center; background-color: transparent;"data-id="${federacion.id}">
 					<td>${titulo3}</td>
 					<td>${federacion.id}</td>
 					<td>${federacion.nombre}</td>
@@ -101,20 +146,12 @@
 					<td><button type="button" class="btn btn-danger btn-borrar-1">BORRAR</button></td>
 				</tr>
 			</c:forEach>
-			
+		</tbody>
+		</table>
 			
 			
 		
-				
-		</tbody>
-</table>
 	
-						
-							<div style="text-align: right;" colspan="5">
-							<form  action="${path}/salir" method="post">
-							<input type="hidden" name="_csrf" value="${_csrf.token}">
-							<button id="btn-salir" type="submit" class="btn btn-danger">SALIR</button>
-							</form>
-							</div>
+			
 </body>
 </html>

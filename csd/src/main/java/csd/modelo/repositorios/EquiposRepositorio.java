@@ -10,10 +10,10 @@ import csd.modelo.entidades.Equipos;
 @Repository
 public interface EquiposRepositorio  extends CrudRepository<Equipos, Long>{
 
-	
-	List<Equipos> findByNombreContaining(String busqueda);
 
-	Object findByNombre(String string);
+
+
+	List<Equipos> findByNombreIgnoreCaseContaining(String busqueda);
 
 	
 	

@@ -11,10 +11,6 @@ import csd.modelo.entidades.Jugador;
 @Repository
 public interface JugadorRepositorio  extends JpaRepository<Jugador, Long> {
 
-	
-
-	List<Jugador> findByNombreContaining(String busqueda);
-
-	Object findByNombre(String string);
+	List<Jugador> findByNombreIgnoreCaseContaining(String busqueda);
 
 }

@@ -2,6 +2,7 @@
 package csd.configuraciones;
 
 import java.beans.PropertyVetoException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -20,6 +21,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import csd.modelo.entidades.Jugador;
 
 @Configuration
 @EnableTransactionManagement
@@ -46,7 +49,22 @@ class ConfiguracionBD {
 		Properties jpaProterties = new Properties();
 		jpaProterties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
 		jpaProterties.put("hibernate.hbm2ddl.auto", "update");
+		
+		jpaProterties.put("hibernate.show_sql", "true");
+		jpaProterties.put("hibernate.format_sql", "true");
+		
+		jpaProterties.put("show_sql", "true");
+		jpaProterties.put("format_sql", "true");
+		
 		jpaProterties.put("log4j.logger.org.hibernate.SQL", "trace");
+		
+		jpaProterties.put("logging.level.org.hibernate.SQL", "DEBUG");
+		jpaProterties.put("logging.level.org.hibernate.type.descriptor.sql.BasicBinder", "TRACE");
+		
+		jpaProterties.put("spring.jpa.properties.hibernate.show_sql", "true");
+		jpaProterties.put("spring.jpa.properties.hibernate.use_sql_comments", "true");
+		jpaProterties.put("spring.jpa.properties.hibernate.format_sql", "true");
+		
 		entityManagerFactoryBean.setJpaProperties(jpaProterties);
 		return entityManagerFactoryBean;
 	}

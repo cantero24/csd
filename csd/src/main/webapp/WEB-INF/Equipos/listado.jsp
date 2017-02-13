@@ -28,17 +28,8 @@
 </head>
 <body style="background:url('http://all-cspro.ru/_ph/3/649686777.png'); ">
 
-	<div>
-		
-		<form action="${path}/buscar" method="POST">
-		<label style="color:white; "for="buscar ">Buscar:</label>
-		<input id="buscar"  style="width: 20%" name="buscar" class="form-control"/> 
-		<input id="csrf" name="_csrf" type="hidden" value="${_csrf.token}">
-		<button type="submit" class="btn btn-primary btn-buscar">BUSCAR</button>
-		
-		</form>
-		
-		</div>
+	
+	<jsp:include page="/WEB-INF/buscar/buscarform.jsp"></jsp:include>
 		
 	<div align="right">
 		<input type="button"
